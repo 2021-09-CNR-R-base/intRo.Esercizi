@@ -366,6 +366,40 @@ penguins %>%
 
 ```
 
+## Salvataggio
+
+```{r plot-setup, echo=FALSE}
+penguins <- palmerpenguins::penguins
+dir.create("figure")
+```
+
+```{r df14, exercise=TRUE, exercise.setup = "plot-setup" }
+# Utilizzando il codice sotto riportato, salva il plot nella cartella 'figure', in tiff,
+# largo 10 cm e alto 7 cm, con una risoluzione di 400dpi
+
+penguins %>%
+    group_by(species) %>%
+    summarise(nm = mean(bill_length_mm, na.rm = TRUE)) %>%
+    ggplot(aes(x = species,
+               y = nm)) +
+    geom_col()       
+
+ggsave("figure/___", units = ___, width = ___, height = ___, dpi = ___)
+```
+
+```{r df14-hint-1}
+# La soluzione è:
+penguins %>%
+    group_by(species) %>%
+    summarise(nm = mean(bill_length_mm, na.rm = TRUE)) %>%
+    ggplot(aes(x = species,
+               y = nm)) +
+    geom_col()       
+
+ggsave("figure/Fig1.tiff", units = "cm", width = 10, height = 7, dpi = 400)
+```
+
+
 ## Bonus
 
 In questo capitolo bonus vi mostrerò la funzionalità delle variabili categoriche
